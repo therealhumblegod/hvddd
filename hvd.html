@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background-image: url('heart.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        max-width: 400px;
+        transition: 0.2s;
+    }
+
+    h1 {
+        color: #ff4d6d;
+        font-size: 26px;
+    }
+
+    .buttons {
+        margin-top: 25px;
+    }
+
+    button {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.3s ease;
+    }
+
+    #yesBtn {
+        background-color: #ff4d6d;
+        color: white;
+    }
+
+    #noBtn {
+        background-color: #ddd;
+        color: #333;
+    }
+
+    .shake {
+        animation: shake 0.4s;
+    }
+
+    @keyframes shake {
+        0% { transform: translate(0px, 0px); }
+        20% { transform: translate(-10px, 5px); }
+        40% { transform: translate(10px, -5px); }
+        60% { transform: translate(-10px, 5px); }
+        80% { transform: translate(10px, -5px); }
+        100% { transform: translate(0px, 0px); }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <h1>Will you be my Valentine? </h1>
+
+    <div class="buttons">
+        <button id="yesBtn" onclick="goToLovePage()">Yes</button>
+        <button id="noBtn" onclick="shrinkNo()">No</button>
+    </div>
+</div>
+
+<script>
+    let yesSize = 16;
+    let noSize = 16;
+
+    function shrinkNo() {
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+        const card = document.getElementById("card");
+
+        // YES gets bigger
+        yesSize += 8;
+        yesBtn.style.fontSize = yesSize + "px";
+        yesBtn.style.padding = (yesSize / 2) + "px " + yesSize + "px";
+
+        // NO gets smaller
+        noSize -= 3;
+
+        if (noSize > 0) {
+            noBtn.style.fontSize = noSize + "px";
+            noBtn.style.padding = (noSize / 2) + "px " + noSize + "px";
+        } else {
+            noBtn.style.display = "none";
+        }
+
+        // Shake effect
+        card.classList.add("shake");
+        setTimeout(() => {
+            card.classList.remove("shake");
+        }, 400);
+    }
+
+    function goToLovePage() {
+        window.location.href = "love.html";
+    }
+</script>
+
+</body>
+</html>
